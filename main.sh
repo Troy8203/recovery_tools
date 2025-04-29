@@ -18,4 +18,5 @@ check_status() {
 check_status
 
 #restore_ohmyzsh
-restore_starship
+#restore_starship
+restore_rxfetch

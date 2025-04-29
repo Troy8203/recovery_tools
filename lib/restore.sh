@@ -50,6 +50,21 @@ create_startship() {
     cat "$CURRENT_PATH/config/starship/starship.toml" > "$file_starship"
 }
 
+create_rxfetch() {
+    local file_path="/usr/local/bin/"
+    local file_rxfetch="$file_path/rxfetch"
+
+    mkdir -p "$file_path"
+    cat "$CURRENT_PATH/config/rxfetch/rxfetch" > "$file_rxfetch"
+    chmod +x "$file_rxfetch"
+
+    if [ -e "$file_rxfetch" ]; then
+        echo "✔ rxfetch was created"
+    else
+        echo "✖ rxfetch was not created" 
+    fi
+}
+
 
 restore_ohmyzsh() {
     if check_ohmyzsh ; then
@@ -70,6 +85,16 @@ restore_starship() {
         exit 0
     else
         echo "Is no possible to restore starship"
+        exit 1
+    fi
+}
+
+restore_rxfetch() {
+    if check_rxfetch ; then
+        create_rxfetch
+        exit 0
+    else
+        echo "Is no possible to restore rxfetch"
         exit 1
     fi
 }
