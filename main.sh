@@ -19,4 +19,5 @@ check_status
 
 #restore_ohmyzsh
 #restore_starship
-restore_rxfetch
+#restore_rxfetch
+restore_colorls

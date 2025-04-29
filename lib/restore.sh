@@ -65,6 +65,19 @@ create_rxfetch() {
     fi
 }
 
+create_colorls() {
+    local file_path="$HOME/.config"
+
+    mkdir -p "$file_path/colorls"
+    cp -r "$CURRENT_PATH/config/colorls/" "$file_path"
+
+    if [[ -d "$file_path/colorls" && -e "$file_path/colorls/file_aliases.yaml" && -e "$file_path/colorls/files.yaml" && -e "$file_path/colorls/folders.yaml" ]]; then
+        echo "✔ colorls was created"
+    else
+        echo "✖ colorls was not created" 
+    fi
+}
+
 
 restore_ohmyzsh() {
     if check_ohmyzsh ; then
@@ -95,6 +108,16 @@ restore_rxfetch() {
         exit 0
     else
         echo "Is no possible to restore rxfetch"
+        exit 1
+    fi
+}
+
+restore_colorls() {
+    if check_colorls ; then
+        create_colorls
+        exit 0
+    else
+        echo "Is no possible to restore colorls"
         exit 1
     fi
 }
