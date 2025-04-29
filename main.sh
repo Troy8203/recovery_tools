@@ -17,4 +17,5 @@ check_status() {
 
 check_status
 
-retore_ohmyzsh
+#restore_ohmyzsh
+restore_starship

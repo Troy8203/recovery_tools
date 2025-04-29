@@ -42,9 +42,16 @@ create_tools() {
     #source ~/.zshrc
 }
 
+create_startship() {
+    local file_path="$HOME/.config"
+    local file_starship="$file_path/starship.toml"
+
+    mkdir -p "$file_path"
+    cat "$CURRENT_PATH/config/starship/starship.toml" > "$file_starship"
+}
 
 
-retore_ohmyzsh() {
+restore_ohmyzsh() {
     if check_ohmyzsh ; then
         echo -e "\nInstall this plugins:"
         echo "- zsh-syntax-highlighting"
@@ -53,6 +60,16 @@ retore_ohmyzsh() {
         exit 0
     else
         echo "Is no possible to restore oh-my-zsh"
+        exit 1
+    fi
+}
+
+restore_starship() {
+    if check_starship ; then
+        create_startship
+        exit 0
+    else
+        echo "Is no possible to restore starship"
         exit 1
     fi
 }

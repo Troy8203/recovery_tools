@@ -1,0 +1,247 @@
+# Get editor completions based on the config schema 󱩛 ⏽·
+# Primary
+# 900:#2f2f32
+# 800:#464649
+# 700:#5d5d5f
+# 600:#747476
+# 500:#8c8c8d
+# 400:#a3a3a4
+# 300:#bababb
+# 200:#d1d1d1
+# 100:#e8e8e8
+# Foreground
+# fg-900:#2f2f32
+# fg-800:#464649
+# fg-700:#5d5d5f
+# fg-600:#747476
+# fg-500:#8c8c8d
+# fg-400:#a3a3a4
+# fg-300:#bababb
+# fg-200:#d1d1d1
+# fg-100:#e8e8e8
+
+'$schema' = 'https://starship.rs/config-schema.json'
+
+format = """
+ \
+$sudo\
+$python\
+$directory\
+${localip}\
+${custom.gitlab}\
+${custom.github}\
+$git_branch\
+$git_commit\
+$git_metrics\
+$git_status\
+$git_state\
+$fill\
+$cmd_duration\
+$nodejs\
+\n$character
+"""
+
+add_newline = true
+
+[custom.start_line]
+command='echo "╭"'
+when=true
+format='[$output](bold fg:#7c7c7c)'
+
+[custom.end_line]
+command='echo "╰"'
+when=true
+format='[$output](bold fg:#7c7c7c)'
+
+[character]
+success_symbol = '[](bold #57e389)'
+error_symbol = '[](bold #f87177)'
+vimcmd_symbol = "[](green)"
+format = ' $symbol '
+
+[os]
+disabled = false
+
+[os.symbols]
+Fedora = ""
+
+[sudo]
+style = '#4A90E2'
+symbol = '󰮤'
+disabled = false
+format='[$symbol ]($style)'
+
+[directory]
+style = "bg:#383838 fg:#ffffff"
+truncation_length = 3
+truncation_symbol = "…/󰷏 "
+read_only = "󱪨 "
+format = "[[ $path ]($style)](fg:#383838)"
+
+[directory.substitutions]
+"home" = "󱂶 "
+"~" = "~ 󰮜 "
+"Documents" = "󱧷 Documents"
+"Downloads" = "󱃩 Downloads"
+"Music"="󱍚 Music"
+"Pictures"="󱃫 Pictures"
+"Desktop" = "󱋤  Desktop"
+"Videos" = "󱧻 Videos"
+"Agetic" = "agetic 󰲃"
+"frontend"="frontend 󰾰 "
+"backend"="backend "
+"portal"="portal 󰾔"
+"usb"="󱊟 "
+"pendrive"="󱊟"
+
+[localip]
+ssh_only = true
+style = "fg:#a3a3a4"
+format = ' [  ]()[$localipv4]($style)'
+disabled = false
+
+[git_branch]
+symbol = ""
+style = "fg:#c566dd"
+format = '[[$symbol]() $branch ⏽]($style)'
+
+[git_commit]
+commit_hash_length = 5
+style = "fg:#747476"
+tag_symbol = " 󰓹 "
+only_detached = true
+tag_disabled = true
+format = '[ [ ]()$hash$tag ⏽]($style)'
+
+[git_metrics]
+disabled = true
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[git_status]
+style = ""
+ahead = " 󰭾 "
+behind = " 󰭽 "
+diverged = " 󰼯 "
+up_to_date = " 󱋌 "
+conflicted = "󰩌 [$count](fg:#5d5d5f)·"
+untracked = "󱀶 [$count](fg:#5d5d5f)·"
+stashed = "󰘓 [$count](fg:#5d5d5f)·"
+modified = "󱇨 [$count](fg:#5d5d5f)·"
+staged = "󰻭 [$count](fg:#5d5d5f)·"
+renamed = "󱀱 [$count](fg:#5d5d5f)·"
+deleted = "󱀷 [$count](fg:#5d5d5f)·"
+typechanged = "󱁼 [$count](fg:#5d5d5f)·"
+
+format = '[($ahead_behind $all_status)]($style)'
+
+[git_state]
+style = "fg:#5d5d5f"
+rebase = 'REB '
+merge = 'MERGE '
+revert = 'REVER '
+bisect = 'BISEC '
+cherry_pick = 'PICK '
+am = 'AM '
+am_or_rebase = 'AM/REBASE 󰊢'
+format = '[( $state  󰈖 $progress_current·󰩋 $progress_total ⏽)]($style) '
+
+[fill]
+symbol = ' '
+style = 'bold fg:#3d3d3d'
+
+[bun]
+version = "${major}.${minor}"
+format = 'via [ $version](bold green) '
+
+[nodejs]
+symbol = "󰎙 "
+style = "#abe095"
+version_format = "${major}.${minor}"
+not_capable_style = "#f6aa4f"
+format = '[$symbol]($style)[$version ](fg:#5d5d5f)'
+
+[rust]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[php]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[python]
+symbol = ''
+style = "fg:#f6aa4f"
+python_binary = 'python3'
+format = '[${pyenv_prefix}()( \($virtualenv\) )]($style)'
+
+[cmd_duration]
+min_time = 500
+style = "#45e8d0"
+format = '[ 󰔟·$duration ⏽ ]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "#60c689"
+format = '[  $time]($style)'
+
+[line_break]
+disabled = false
+
+[custom.user]
+detect_folders = ['.git']
+style = "#fca326"
+symbol = ""
+command = """
+user_email=$(git config --global user.email)
+  if [[ "$user_email" == *"@agetic.gob.bo"* ]]; then
+    echo ""
+  else
+    echo "󰊤"
+  fi
+"""
+format = '[ ($output)  ]($style)'
+
+[custom.docker]
+description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
+command = "echo 🐳"
+files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
+when = """ command -v docker &> /dev/null; exit (echo $?); """
+prefix = "on "
+
+
+[custom.gitlab]
+detect_folders = ['.git']
+style = "#fca326"
+symbol = ""
+command = """
+account="@agetic.gob.bo"
+logo="󰮠"
+user_email=$(git config --global user.email)
+if [[ "$user_email" == *$account* ]]; then
+    echo "\b $logo  \b"
+fi
+"""
+format = '[$symbol ($output)]($style)'
+
+[custom.github]
+detect_folders = ['.git']
+style = ""
+symbol = ""
+command = """
+account="@gmail.com"
+logo=""
+user_email=$(git config --global user.email)
+if [[ "$user_email" == *$account* ]]; then
+    echo "\b$logo   \b"
+fi
+"""
+format = '[$symbol ($output)]($style)'
