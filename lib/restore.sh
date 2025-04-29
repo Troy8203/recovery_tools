@@ -78,6 +78,20 @@ create_colorls() {
     fi
 }
 
+create_tmux() {
+    local file_path="$HOME"
+    local file_tmux="$file_path/.tmux.conf"
+
+    cat "$CURRENT_PATH/config/tmux/.tmux.conf" > "$file_tmux"
+
+    if [ -e "$file_tmux" ]; then
+        echo "✔ tmux was created"
+        tmux source-file "$file_tmux"
+    else
+        echo "✖ tmux was not created" 
+    fi
+}
+
 
 restore_ohmyzsh() {
     if check_ohmyzsh ; then
@@ -118,6 +132,16 @@ restore_colorls() {
         exit 0
     else
         echo "Is no possible to restore colorls"
+        exit 1
+    fi
+}
+
+restore_tmux() {
+    if check_tmux ; then
+        create_tmux
+        exit 0
+    else
+        echo "Is no possible to restore tmux"
         exit 1
     fi
 }

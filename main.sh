@@ -12,7 +12,8 @@ check_status() {
     check_starship
     check_rxfetch
     check_colorls
-    check_bat
+    check_others
+    check_tmux
 }
 
 check_status
@@ -20,4 +21,5 @@ check_status
 #restore_ohmyzsh
 #restore_starship
 #restore_rxfetch
-restore_colorls
+#restore_colorls
+restore_tmux

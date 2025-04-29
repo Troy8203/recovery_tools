@@ -53,8 +53,18 @@ check_colorls() {
     fi
 }
 
+check_tmux() {
+    if tmux -V ls >/dev/null 2>&1; then
+        echo "✔ tmux was installed"
+        return 0
+    else
+        echo "✖ tmux is not installed"
+        return 1
+    fi
+}
+
 #Check if bat is installed
-check_bat() {
+check_others() {
     if bat --version ls >/dev/null 2>&1; then
         echo "✔ bat was installed"
         return 0
