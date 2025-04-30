@@ -23,6 +23,8 @@ Make sure you have the following tools installed before running the script:
 - [Colorls](https://github.com/athityakumar/colorls)
 - [Tmux](https://github.com/tmux/tmux/wiki/Installing)
 
+> Other cli tools: `bat` `speedtest-cli` `trash` `mdv`
+
 ## Usage
 
 ### Clone and Run
