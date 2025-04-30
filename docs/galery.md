@@ -1,7 +1,7 @@
 # Gallery
 
 ## Desktop 
-![alt text](image.png)
+![alt text](./img/image.png)
 
 ## Menu
 ![menu](./img/apps.png)
@@ -23,3 +23,13 @@
 
 ## 📦 Others
 ![menu](./img/6Others.png)
+
+
+### Icons
+
+- [Reversal icon theme](https://www.gnome-look.org/p/1340791/)
+- [Colloid icon theme](https://www.gnome-look.org/p/1661983/)
+
+#### Cursors
+
+- [Bibata](https://github.com/ful1e5/Bibata_Cursor)

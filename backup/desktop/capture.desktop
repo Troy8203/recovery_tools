@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Screenshot
+GenericName=Screenshot tool
+Keywords=flameshot;screenshot;capture;shutter;
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=flameshot org.flameshot.Flameshot gui
+Icon=plymouth
+Terminal=false
+Type=Application
+Categories=Graphics;
+StartupNotify=false
+StartupWMClass=flameshot
+Actions=Configure;Capture;Launcher;

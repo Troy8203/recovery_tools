@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Pixel 4a
+Comment=Lauch device Pixel 4a API 30
+Exec=/home/troy/Android/Sdk/emulator/emulator -avd Pixel_4_Demo_API_30
+Icon=preferences-kde-connect
+Terminal=false
+Type=Application
+Categories=Development;IDE;Emulator;
+StartupWMClass=Emulator
+Keywords=Android;Emulator;Development;Pixel 4a;
