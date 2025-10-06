@@ -15,6 +15,7 @@ check_status() {
     check_colorls
     check_others
     check_tmux
+    check_btop
 }
 
 help() {
@@ -28,6 +29,7 @@ help() {
 \t[-c | --colorls]\tRestore colorls
 \t[-tm | --tmux]\t\tRestore tmux
 \t[-t | --test]\t\tCheck status
+\t[-b | --btop]\t\tRestore btop
 Shortcuts:
 \t[-sc | --shortcreate]\tCreate shortcuts
 \t[-sr | --shortrestore]\tRestore shortcuts"
@@ -60,6 +62,11 @@ if [ "$#" -ge 1 ]; then
             restore_rxfetch
             restore_colorls
             restore_tmux
+            restore_btop
+            exit 0
+            ;;
+        -b|--btop)
+            restore_btop
             exit 0
             ;;
         -o|--omz)

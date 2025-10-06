@@ -92,6 +92,21 @@ create_tmux() {
     fi
 }
 
+create_btop() {
+    local file_path="$HOME/.config/btop"
+    local file_config="$file_path/btop/btop.conf"
+    local file_theme="$file_path/themes/gnome.theme"
+
+    cat "$CURRENT_PATH/config/btop/btop.conf" > "$file_config"
+    cat "$CURRENT_PATH/config/btop/gnome.theme" > "$file_theme"
+
+    if [ -e "$file_config" && -e "$file_theme" ]; then
+        echo "✔ btop was created"
+    else
+        echo "✖ btop was not created" 
+    fi
+}
+
 
 restore_ohmyzsh() {
     if check_ohmyzsh ; then
@@ -144,6 +159,16 @@ restore_tmux() {
         exit 0
     else
         echo "Is no possible to restore tmux"
+        exit 1
+    fi
+}
+
+restore_btop() {
+    if check_btop ; then
+        create_btop
+        exit 0
+    else
+        echo "Is no possible to restore btop"
         exit 1
     fi
 }

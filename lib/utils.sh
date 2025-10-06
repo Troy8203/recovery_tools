@@ -73,3 +73,13 @@ check_others() {
         return 1
     fi
 }
+
+check_btop() {
+    if btop --version ls >/dev/null 2>&1; then
+        echo "✔ btop was installed"
+        return 0
+    else
+        echo "✖ btop is not installed"
+        return 1
+    fi
+}
