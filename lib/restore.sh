@@ -13,10 +13,14 @@ create_tools() {
     file_zshrc="$HOME/.zshrc"
     file_path="$path/bash_tools.sh"
     file_config="$path/config.sh"
+    file_banner="$path/banner.sh"
 
     #Create bash_tools.sh
     cat "$CURRENT_PATH/config/aliases.sh"  > "$file_path" 
     cat "$CURRENT_PATH/config/functions.sh" >> "$file_path"
+
+    #Create banner.sh
+    cat "$CURRENT_PATH/config/gradient.sh"  > "$file_banner"
 
     if [ -e "$file_path" ]; then
         echo "✔ bash_tools.sh was created"

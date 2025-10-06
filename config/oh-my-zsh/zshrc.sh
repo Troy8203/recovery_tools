@@ -20,10 +20,10 @@ fi
 # Check if current directory is home to show rxfetch
 if [ "$CURRENT_DIR" = "$HOME" ]; then
     if rxfetch -v ls >/dev/null 2>&1; then
-        #rxfetch
-	bash /home/troy/Documents/scripts/gradient.sh
+        rxfetch
     else
-        echo "rxfetch is not installed"
+        #echo "rxfetch is not installed"
+        bash "$HOME/.reconfig/banner.sh"
     fi
 fi
 
@@ -42,3 +42,4 @@ fi
 #export ANDROID_HOME=/home/troy/Android/Sdk
 #Android adb
 #export PATH=$PATH:/home/troy/Android/Sdk/platform-tools
+#TODO: test with zcompile ~/.zshrc in case of bash ...
