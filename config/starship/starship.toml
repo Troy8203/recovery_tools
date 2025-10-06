@@ -26,6 +26,7 @@ format = """
  \
 $sudo\
 $python\
+$conda\
 $directory\
 ${localip}\
 ${custom.gitlab}\
@@ -55,7 +56,7 @@ format='[$output](bold fg:#7c7c7c)'
 
 [character]
 success_symbol = '[](bold #57e389)'
-error_symbol = '[](bold #f87177)'
+error_symbol = '[](bold #f87177)'
 vimcmd_symbol = "[](green)"
 format = ' $symbol '
 
@@ -106,12 +107,15 @@ style = "fg:#c566dd"
 format = '[[$symbol]() $branch ⏽]($style)'
 
 [git_commit]
+disabled = false
 commit_hash_length = 5
 style = "fg:#747476"
-tag_symbol = " 󰓹 "
-only_detached = true
-tag_disabled = true
-format = '[ [ ]()$hash$tag ⏽]($style)'
+tag_symbol = ""
+only_detached = false
+tag_disabled = false
+tag_max_candidates = 5
+#format = '[ [ ]()$hash [󰓹 ]()$tag ⏽]($style)'
+format = '[ [ ]()$tag ⏽]($style)'
 
 [git_metrics]
 disabled = true
@@ -159,7 +163,7 @@ symbol = "󰎙 "
 style = "#abe095"
 version_format = "${major}.${minor}"
 not_capable_style = "#f6aa4f"
-format = '[$symbol]($style)[$version ](fg:#5d5d5f)'
+format = '[$symbol]($style)[$version](fg:#b5b5b5)[v](fg:#b5b5b5)'
 
 [rust]
 symbol = ""
@@ -178,9 +182,15 @@ format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [python]
 symbol = ''
-style = "fg:#f6aa4f"
+style = "fg:#57e389"
 python_binary = 'python3'
-format = '[${pyenv_prefix}()( \($virtualenv\) )]($style)'
+format = '[${pyenv_prefix}()( \($virtualenv\) )]($style)'
+
+[conda]
+symbol = ""
+style = "fg:#57e389"
+ignore_base = false
+format = "[$symbol ($environment) ]($style)"
 
 [cmd_duration]
 min_time = 500
@@ -224,7 +234,7 @@ style = "#fca326"
 symbol = ""
 command = """
 account="@agetic.gob.bo"
-logo="󰮠"
+logo=""
 user_email=$(git config --global user.email)
 if [[ "$user_email" == *$account* ]]; then
     echo "\b $logo  \b"
@@ -238,7 +248,7 @@ style = ""
 symbol = ""
 command = """
 account="@gmail.com"
-logo=""
+logo=""
 user_email=$(git config --global user.email)
 if [[ "$user_email" == *$account* ]]; then
     echo "\b$logo   \b"
