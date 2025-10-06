@@ -111,6 +111,21 @@ create_btop() {
     fi
 }
 
+create_wallpaper() {
+    local file_path="$HOME/Pictures"
+    local file_wallpaper="$file_path/wallpaper_config.xml"
+
+    cp -r "$CURRENT_PATH/backup/wallpapers/gradient" "$file_path"
+
+    sed "s|PATH|$file_path|g" "$CURRENT_PATH/backup/wallpapers/gradient.xml.template" > "$file_wallpaper"
+
+    if [ -e "$file_wallpaper" ]; then
+        echo "✔ wallpaper_config.xml was created"
+    else
+        echo "✖ wallpaper_config.xml was not created" 
+    fi
+}
+
 
 restore_ohmyzsh() {
     if check_ohmyzsh ; then
@@ -175,4 +190,8 @@ restore_btop() {
         echo "Is no possible to restore btop"
         exit 1
     fi
+}
+
+restore_wallpaper() {
+    create_wallpaper
 }

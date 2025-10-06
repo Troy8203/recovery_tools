@@ -28,8 +28,9 @@ help() {
 \t[-r | --rxfetch]\tRestore rxfetch
 \t[-c | --colorls]\tRestore colorls
 \t[-tm | --tmux]\t\tRestore tmux
-\t[-t | --test]\t\tCheck status
 \t[-b | --btop]\t\tRestore btop
+\t[-w | --wallpaper]\tSRestore wallpaper
+\t[-t | --test]\t\tCheck status
 Shortcuts:
 \t[-sc | --shortcreate]\tCreate shortcuts
 \t[-sr | --shortrestore]\tRestore shortcuts"
@@ -91,6 +92,10 @@ if [ "$#" -ge 1 ]; then
             ;;
         -t|--test)
             check_status
+            exit 0
+            ;;
+        -w|--wallpaper)
+            restore_wallpaper
             exit 0
             ;;
         -sc|--shortcreate)
