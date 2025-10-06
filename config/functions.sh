@@ -1,3 +1,6 @@
+############
+# Functions
+###########
 # funcion backup, create a backup of a file
 function backup_file() {
   FILE="$1"
@@ -31,4 +34,3 @@ copy-path() {
   pwd | xclip -selection clipboard
   echo " 󰉕 $(pwd) Path copied"
 }
-

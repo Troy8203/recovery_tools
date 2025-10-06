@@ -7,7 +7,7 @@ CURRENT_DIR="$(pwd)"
 # Function to set the tab name
 function set_name () {
   local current_dir=$(basename "$(pwd)") # Get the name of the current directory
-  echo -ne "\033]0;    $current_dir\007" # Set the tab name
+  echo -ne "\033]0;󰷏   $current_dir\007" # Set the tab name
 }
 
 # Add the function to the environment variable in either Zsh or Bash
@@ -20,7 +20,8 @@ fi
 # Check if current directory is home to show rxfetch
 if [ "$CURRENT_DIR" = "$HOME" ]; then
     if rxfetch -v ls >/dev/null 2>&1; then
-        rxfetch
+        #rxfetch
+	bash /home/troy/Documents/scripts/gradient.sh
     else
         echo "rxfetch is not installed"
     fi
