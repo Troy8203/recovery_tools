@@ -1,0 +1,24 @@
+[custom0]
+binding='<Super>e'
+command='xdg-open Downloads'
+name='Open File Explore'
+
+[custom1]
+binding='<Control><Alt>t'
+command='blackbox-terminal'
+name='BlackBox Terminal'
+
+[custom2]
+binding='<Super>Print'
+command='sh -c "/usr/bin/flatpak run org.flameshot.Flameshot gui"'
+name='FlameshotCapture'
+
+[custom3]
+binding='<Shift><Control><Alt><Super>space'
+command='flatpak run it.mijorus.smile'
+name='Open Smile Emojie'
+
+[custom4]
+binding='Launch2'
+command='gnome-system-monitor'
+name='Monitor'
