@@ -112,6 +112,8 @@ restore_starship() {
         exit 0
     else
         echo "Is no possible to restore starship"
+        echo "Create the file ~/.config/starship.toml"
+        echo "Run touch ~/.config/starship.toml"
         exit 1
     fi
 }
