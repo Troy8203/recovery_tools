@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Deemix
+Exec=/home/troy/.local/bin/linux-x64-latest.AppImage
+Icon=deezer
+Type=Application
+Categories=Utility;
+Terminal=false
+StartupWMClass=deemix-gui
