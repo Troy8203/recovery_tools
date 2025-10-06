@@ -33,3 +33,4 @@
 #### Cursors
 
 - [Bibata](https://github.com/ful1e5/Bibata_Cursor)
+- [Oreo](https://www.gnome-look.org/p/1360254)
