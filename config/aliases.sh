@@ -37,6 +37,8 @@ alias label_test='tmux rename-window "󰙨Test"'
 alias label_docs='tmux rename-window "󱞂 Docs"'
 alias label_dev='tmux rename-window "  Develop"'
 alias label_server='tmux rename-window "  Server"'
+#alias start-tmux='tmux new-session \; split-window -h \; split-window -v "btop" \; send-keys -t 1 C-l'
+alias tmux-start='tmux new-session \; rename-window " Terminal" \; split-window -h \; select-pane -t 1 \; split-window -v "btop"\; select-pane -t 0'
 
 #Alias of task
 alias listTask='cat /home/troy/.reconfig/task.txt'
