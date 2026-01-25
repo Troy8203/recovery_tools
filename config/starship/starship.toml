@@ -27,10 +27,11 @@ format = """
 $sudo\
 $python\
 $conda\
+$docker_context\
 $directory\
 ${localip}\
-${custom.gitlab}\
-${custom.github}\
+${custom.remote_github}\
+${custom.remote_gitlab}\
 $git_branch\
 $git_commit\
 $git_metrics\
@@ -38,6 +39,9 @@ $git_status\
 $git_state\
 $fill\
 $cmd_duration\
+$memory_usage\
+$bun\
+$deno\
 $nodejs\
 \n$character
 """
@@ -73,11 +77,11 @@ disabled = false
 format='[$symbol ]($style)'
 
 [directory]
-style = "bg:#383838 fg:#ffffff"
+style = "bg:#ffffff fg:#1e1e1e"
 truncation_length = 3
 truncation_symbol = "…/󰷏 "
 read_only = "󱪨 "
-format = "[[ $path ]($style)](fg:#383838)"
+format = "[[ $path ]($style)](fg:#ffffff)"
 
 [directory.substitutions]
 "home" = "󱂶 "
@@ -103,8 +107,9 @@ disabled = false
 
 [git_branch]
 symbol = ""
-style = "fg:#c566dd"
-format = '[[$symbol]() $branch ⏽]($style)'
+style = "fg:#AB4CFE"
+#format = '[[$symbol]() $branch ⏽]($style)'
+format = '[ $branch ⏽]($style)'
 
 [git_commit]
 disabled = false
@@ -155,14 +160,23 @@ symbol = ' '
 style = 'bold fg:#3d3d3d'
 
 [bun]
-version = "${major}.${minor}"
-format = 'via [ $version](bold green) '
+symbol = " "
+style = "#fbf0df"
+disabled = false
+format = '[$symbol]($style)[$version](fg:#b5b5b5)'
+
+[deno]
+symbol = " "
+style = "#74ffb2"
+disabled = false
+format = '[$symbol]($style)[$version ](fg:#b5b5b5)'
 
 [nodejs]
 symbol = "󰎙 "
 style = "#abe095"
 version_format = "${major}.${minor}"
 not_capable_style = "#f6aa4f"
+disabled = false
 format = '[$symbol]($style)[$version](fg:#b5b5b5)[v](fg:#b5b5b5)'
 
 [rust]
@@ -192,10 +206,17 @@ style = "fg:#57e389"
 ignore_base = false
 format = "[$symbol ($environment) ]($style)"
 
+[docker_context]
+symbol = " "
+style = "#02A8EF"
+only_with_files = false
+disabled = false
+format = "[$symbol ($context) ]($style)"
+
 [cmd_duration]
 min_time = 500
 style = "#45e8d0"
-format = '[ 󰔟·$duration ⏽ ]($style)'
+format = '[ 󱃑·$duration ⏽ ]($style)'
 
 [time]
 disabled = false
@@ -203,8 +224,20 @@ time_format = "%R" # Hour:Minute Format
 style = "#60c689"
 format = '[  $time]($style)'
 
+[memory_usage]
+disabled = false
+threshold = 80
+symbol = '󱗗'
+style = '#F6B13E'
+format = "[$symbol ($ram_pct) ⏽ ]($style)"
+
 [line_break]
 disabled = false
+
+[container]
+symbol = '  '
+disabled = false
+format = '[$symbol \[$name\]]($style) '
 
 [custom.user]
 detect_folders = ['.git']
@@ -237,7 +270,7 @@ account="@agetic.gob.bo"
 logo=""
 user_email=$(git config --global user.email)
 if [[ "$user_email" == *$account* ]]; then
-    echo "\b $logo  \b"
+    echo "\b $logo   \b"
 fi
 """
 format = '[$symbol ($output)]($style)'
@@ -251,7 +284,34 @@ account="@gmail.com"
 logo=""
 user_email=$(git config --global user.email)
 if [[ "$user_email" == *$account* ]]; then
-    echo "\b$logo   \b"
+    echo "\b $logo   \b"
+fi
+"""
+format = '[$symbol ($output)]($style)'
+
+
+[custom.remote_github]
+detect_folders = ['.git']
+style = ""
+symbol = ""
+command = """
+logo=""
+remote_url=$(git remote get-url origin)
+if [[ "$remote_url" == *"github"* ]]; then
+    echo "\b $logo \b"
+fi
+"""
+format = '[$symbol ($output)]($style)'
+
+[custom.remote_gitlab]
+detect_folders = ['.git']
+style = "#fca326"
+symbol = ""
+command = """
+logo=""
+remote_url=$(git remote get-url origin)
+if [[ "$remote_url" == *"gitlab"* ]]; then
+    echo "\b$logo  \b"
 fi
 """
 format = '[$symbol ($output)]($style)'
