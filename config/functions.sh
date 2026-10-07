@@ -34,3 +34,23 @@ copy-path() {
   pwd | xclip -selection clipboard
   echo " 󰉕 $(pwd) Path copied"
 }
+
+# Create a tmux workspace and run a command in the right pane.
+tmx() {
+  local cmd="$1"
+  local win_name="${cmd:-Terminal}"
+
+  case "$cmd" in
+    claude) win_name=" Claude" ;;
+    agy) win_name="󱍢 Antigravity" ;;
+    opencode) win_name="󱞟 Opencode" ;;
+    btop) win_name=" Code" ;;
+  esac
+
+  tmux rename-window " $win_name"
+  tmux split-window -h
+  tmux send-keys -l -- "$*"
+  tmux send-keys Enter
+  tmux select-pane -t 0
+  tmux split-window -v
+}

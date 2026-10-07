@@ -1,0 +1,7 @@
+{
+  "Tailwind Border Dashed": {
+    "prefix": "bt",
+    "body": ["border-2 border-dashed border-${1:red}-500"],
+    "description": "Tailwind border dashed with color placeholder"
+  }
+}

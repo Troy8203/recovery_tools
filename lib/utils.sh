@@ -1,85 +1,41 @@
-#Check if oh-my-zsh is installed
+check_command() {
+    local command_name="$1"
+    local display_name="${2:-$1}"
+
+    if command -v "$command_name" >/dev/null 2>&1; then
+        echo "✔ $display_name is installed"
+        return 0
+    fi
+
+    echo "✖ $display_name is not installed"
+    return 1
+}
+
 check_ohmyzsh() {
-    if [ -e "$HOME/.oh-my-zsh" ]; then
-        echo "✔ oh-my-zsh was installed"
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        echo "✔ oh-my-zsh is installed"
         return 0
-    else
-        echo "✖ oh-my-zsh is not installed"
-        return 1
     fi
+
+    echo "✖ oh-my-zsh is not installed"
+    return 1
 }
 
-#Check if nerd-fonts is installed
 check_nerdfonts() {
-    if fc-list | grep -iq nerd; then
-        echo "✔ nerd-fonts was installed"
+    if fc-list 2>/dev/null | grep -iq nerd; then
+        echo "✔ nerd-fonts is installed"
         return 0
-    else
-        echo "✖ nerd-fonts is not installed"
-        return 1
     fi
+
+    echo "✖ nerd-fonts is not installed"
+    return 1
 }
 
-#Check if starship is installed
-check_starship() {
-    if [ -e "$HOME/.config/starship.toml" ]; then
-        echo "✔ starship was installed"
-        return 0
-    else
-        echo "✖ starship is not installed"
-        return 1
-    fi
-}
-
-#Check if rxfetch is installed
-check_rxfetch() {
-    if rxfetch -v ls >/dev/null 2>&1; then
-        echo "✔ rxfetch was installed"
-        return 0
-    else
-        echo "✖ rxfetch is not installed"
-        return 1
-    fi
-}
-
-#Check if colorls is installed
-check_colorls() {
-    if colorls --version ls >/dev/null 2>&1; then
-        echo "✔ colorls was installed"
-        return 0
-    else
-        echo "✖ colorls is not installed"
-        return 1
-    fi
-}
-
-check_tmux() {
-    if tmux -V ls >/dev/null 2>&1; then
-        echo "✔ tmux was installed"
-        return 0
-    else
-        echo "✖ tmux is not installed"
-        return 1
-    fi
-}
-
-#Check if bat is installed
-check_others() {
-    if bat --version ls >/dev/null 2>&1; then
-        echo "✔ bat was installed"
-        return 0
-    else
-        echo "✖ bat is not installed"
-        return 1
-    fi
-}
-
-check_btop() {
-    if btop --version ls >/dev/null 2>&1; then
-        echo "✔ btop was installed"
-        return 0
-    else
-        echo "✖ btop is not installed"
-        return 1
-    fi
-}
+check_starship() { check_command starship; }
+check_rxfetch() { check_command rxfetch; }
+check_colorls() { check_command colorls; }
+check_tmux() { check_command tmux; }
+check_ghostty() { check_command ghostty; }
+check_codium() { check_command codium VSCodium; }
+check_others() { check_command bat; }
+check_btop() { check_command btop; }

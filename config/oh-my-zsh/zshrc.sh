@@ -21,12 +21,16 @@ precmd_functions+=(set_name)
 chpwd_functions+=(set_name)
 
 # Check if current directory is home to show rxfetch
-if [ "$CURRENT_DIR" = "$HOME" ]; then
-    if rxfetch -v ls >/dev/null 2>&1; then
+if [ "$PWD" = "$HOME" ]; then
+    if command -v rxfetch >/dev/null 2>&1; then
         rxfetch
     else
-        #echo "rxfetch is not installed"
-        bash "$HOME/.reconfig/banner.sh"
+        msg="[{-_-}] ZZZzz zz z..."
+        cols=$(tput cols)
+        padding=$(( (cols - ${#msg}) / 2 ))
+        echo ""
+        printf "%${padding}s" ""
+        echo "$msg"
     fi
 fi
 
@@ -42,7 +46,7 @@ fi
 
 # Others
 #Android Std
-#export ANDROID_HOME=/home/troy/Android/Sdk
+#export ANDROID_HOME="$HOME/Android/Sdk"
 #Android adb
-#export PATH=$PATH:/home/troy/Android/Sdk/platform-tools
+#export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 #TODO: test with zcompile ~/.zshrc in case of bash ...

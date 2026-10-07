@@ -51,16 +51,16 @@ add_newline = true
 [custom.start_line]
 command='echo "╭"'
 when=true
-format='[$output](bold fg:#7c7c7c)'
+format='[$output](bold)'
 
 [custom.end_line]
 command='echo "╰"'
 when=true
-format='[$output](bold fg:#7c7c7c)'
+format='[$output](bold)'
 
 [character]
-success_symbol = '[](bold #57e389)'
-error_symbol = '[](bold #f87177)'
+success_symbol = '[](bold green)'
+error_symbol = '[](bold red)'
 vimcmd_symbol = "[](green)"
 format = ' $symbol '
 
@@ -71,17 +71,17 @@ disabled = false
 Fedora = ""
 
 [sudo]
-style = '#4A90E2'
-symbol = '󰮤'
+style = 'yellow'
+symbol = '󰄛'
 disabled = false
 format='[$symbol ]($style)'
 
 [directory]
-style = "bg:#ffffff fg:#1e1e1e"
+style = ""
 truncation_length = 3
 truncation_symbol = "…/󰷏 "
 read_only = "󱪨 "
-format = "[[ $path ]($style)](fg:#ffffff)"
+format = '[$path]($style) '
 
 [directory.substitutions]
 "home" = "󱂶 "
@@ -101,20 +101,20 @@ format = "[[ $path ]($style)](fg:#ffffff)"
 
 [localip]
 ssh_only = true
-style = "fg:#a3a3a4"
+style = ""
 format = ' [  ]()[$localipv4]($style)'
 disabled = false
 
 [git_branch]
 symbol = ""
-style = "fg:#AB4CFE"
+style = "purple"
 #format = '[[$symbol]() $branch ⏽]($style)'
-format = '[ $branch ⏽]($style)'
+format = ' [$branch]($style) ⏽'
 
 [git_commit]
 disabled = false
 commit_hash_length = 5
-style = "fg:#747476"
+style = ""
 tag_symbol = ""
 only_detached = false
 tag_disabled = false
@@ -133,19 +133,19 @@ ahead = " 󰭾 "
 behind = " 󰭽 "
 diverged = " 󰼯 "
 up_to_date = " 󱋌 "
-conflicted = "󰩌 [$count](fg:#5d5d5f)·"
-untracked = "󱀶 [$count](fg:#5d5d5f)·"
-stashed = "󰘓 [$count](fg:#5d5d5f)·"
-modified = "󱇨 [$count](fg:#5d5d5f)·"
-staged = "󰻭 [$count](fg:#5d5d5f)·"
-renamed = "󱀱 [$count](fg:#5d5d5f)·"
-deleted = "󱀷 [$count](fg:#5d5d5f)·"
-typechanged = "󱁼 [$count](fg:#5d5d5f)·"
+conflicted = "󰩌 [$count]()·"
+untracked = "󱀶 [$count]()·"
+stashed = "󰘓 [$count]()·"
+modified = "󱇨 [$count]()·"
+staged = "󰻭 [$count]()·"
+renamed = "󱀱 [$count]()·"
+deleted = "󱀷 [$count]()·"
+typechanged = "󱁼 [$count]()·"
 
 format = '[($ahead_behind $all_status)]($style)'
 
 [git_state]
-style = "fg:#5d5d5f"
+style = ""
 rebase = 'REB '
 merge = 'MERGE '
 revert = 'REVER '
@@ -157,79 +157,79 @@ format = '[( $state  󰈖 $progress_current·󰩋 $progress_total ⏽)]($style) 
 
 [fill]
 symbol = ' '
-style = 'bold fg:#3d3d3d'
+style = 'bold'
 
 [bun]
 symbol = " "
-style = "#fbf0df"
+style = ""
 disabled = false
-format = '[$symbol]($style)[$version](fg:#b5b5b5)'
+format = '[$symbol]($style)[$version]()'
 
 [deno]
 symbol = " "
-style = "#74ffb2"
+style = "green"
 disabled = false
-format = '[$symbol]($style)[$version ](fg:#b5b5b5)'
+format = '[$symbol]($style)[$version ]()'
 
 [nodejs]
 symbol = "󰎙 "
-style = "#abe095"
+style = "green"
 version_format = "${major}.${minor}"
-not_capable_style = "#f6aa4f"
+not_capable_style = "yellow"
 disabled = false
-format = '[$symbol]($style)[$version](fg:#b5b5b5)[v](fg:#b5b5b5)'
+format = '[$symbol]($style)[$version]()[v]()'
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "blue"
+format = ' [$symbol]($style) ($version) '
 
 [golang]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "blue"
+format = ' [$symbol]($style) ($version) '
 
 [php]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "blue"
+format = ' [$symbol]($style) ($version) '
 
 [python]
 symbol = ''
-style = "fg:#57e389"
+style = "green"
 python_binary = 'python3'
-format = '[${pyenv_prefix}()( \($virtualenv\) )]($style)'
+format = '${pyenv_prefix}([]($style) \($virtualenv\) )'
 
 [conda]
 symbol = ""
-style = "fg:#57e389"
+style = "green"
 ignore_base = false
-format = "[$symbol ($environment) ]($style)"
+format = '[$symbol]($style)($environment )'
 
 [docker_context]
 symbol = " "
-style = "#02A8EF"
+style = "cyan"
 only_with_files = false
 disabled = false
-format = "[$symbol ($context) ]($style)"
+format = '[$symbol]($style)($context )'
 
 [cmd_duration]
 min_time = 500
-style = "#45e8d0"
-format = '[ 󱃑·$duration ⏽ ]($style)'
+style = "cyan"
+format = ' [󱃑]($style)·$duration ⏽ '
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "#60c689"
-format = '[  $time]($style)'
+style = "green"
+format = ' []($style) $time'
 
 [memory_usage]
 disabled = false
 threshold = 80
-symbol = '󱗗'
-style = '#F6B13E'
-format = "[$symbol ($ram_pct) ⏽ ]($style)"
+symbol = '󱗗 '
+style = 'yellow'
+format = '[$symbol]($style)($ram_pct ⏽ )'
 
 [line_break]
 disabled = false
@@ -241,7 +241,7 @@ format = '[$symbol \[$name\]]($style) '
 
 [custom.user]
 detect_folders = ['.git']
-style = "#fca326"
+style = "yellow"
 symbol = ""
 command = """
 user_email=$(git config --global user.email)
@@ -263,7 +263,7 @@ prefix = "on "
 
 [custom.gitlab]
 detect_folders = ['.git']
-style = "#fca326"
+style = "yellow"
 symbol = ""
 command = """
 account="@agetic.gob.bo"
@@ -305,7 +305,7 @@ format = '[$symbol ($output)]($style)'
 
 [custom.remote_gitlab]
 detect_folders = ['.git']
-style = "#fca326"
+style = "yellow"
 symbol = ""
 command = """
 logo=""
@@ -315,3 +315,47 @@ if [[ "$remote_url" == *"gitlab"* ]]; then
 fi
 """
 format = '[$symbol ($output)]($style)'
+
+# Claude Code status line modules.
+[profiles]
+claude-code = "$claude_model$claude_context$claude_cost"
+
+[claude_model]
+symbol = "󰛄 "
+style = "yellow"
+format = '[ $symbol$model ⏽]($style)'
+
+[claude_context]
+format = '[ $gauge $percentage ($input_tokens/$output_tokens) ⏽]($style)'
+gauge_width = 10
+gauge_full_symbol = '█'
+gauge_partial_symbol = '▒'
+gauge_empty_symbol = '░'
+
+[[claude_context.display]]
+threshold = 0
+style = "green"
+
+[[claude_context.display]]
+threshold = 60
+style = "yellow"
+
+[[claude_context.display]]
+threshold = 80
+style = "red"
+
+[claude_cost]
+symbol = " "
+format = '[ $symbol$cost ⏽]($style)'
+
+[[claude_cost.display]]
+threshold = 0.0
+style = ""
+
+[[claude_cost.display]]
+threshold = 1.0
+style = "yellow"
+
+[[claude_cost.display]]
+threshold = 5.0
+style = "red"

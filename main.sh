@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_version="0.1.0"
+current_version="0.2.0"
 
 #Import utils
 source "$(dirname "$0")/./lib/utils.sh"
@@ -8,14 +8,33 @@ source "$(dirname "$0")/./lib/restore.sh"
 source "$(dirname "$0")/./lib/shortcuts.sh"
 
 check_status() {
-    check_ohmyzsh
-    check_nerdfonts
-    check_starship
-    check_rxfetch
-    check_colorls
-    check_others
-    check_tmux
-    check_btop
+    local status=0
+
+    check_ohmyzsh || status=1
+    check_nerdfonts || status=1
+    check_starship || status=1
+    check_rxfetch || status=1
+    check_colorls || status=1
+    check_others || status=1
+    check_tmux || status=1
+    check_ghostty || status=1
+    check_codium || status=1
+    check_btop || status=1
+    return "$status"
+}
+
+restore_all() {
+    local status=0
+
+    restore_ohmyzsh || status=1
+    restore_starship || status=1
+    restore_tmux || status=1
+    restore_ghostty || status=1
+    restore_codium || status=1
+    restore_rxfetch || status=1
+    restore_colorls || status=1
+    restore_btop || status=1
+    return "$status"
 }
 
 help() {
@@ -28,8 +47,10 @@ help() {
 \t[-r | --rxfetch]\tRestore rxfetch
 \t[-c | --colorls]\tRestore colorls
 \t[-tm | --tmux]\t\tRestore tmux
+\t[-g | --ghostty]\tRestore Ghostty
+\t[-co | --codium]\tRestore VSCodium
 \t[-b | --btop]\t\tRestore btop
-\t[-w | --wallpaper]\tSRestore wallpaper
+\t[-w | --wallpaper]\tRestore wallpaper
 \t[-t | --test]\t\tCheck status
 Shortcuts:
 \t[-sc | --shortcreate]\tCreate shortcuts
@@ -58,41 +79,44 @@ if [ "$#" -ge 1 ]; then
             exit 0
             ;;
         -a|--all)
-            restore_ohmyzsh
-            restore_starship
-            restore_rxfetch
-            restore_colorls
-            restore_tmux
-            restore_btop
-            exit 0
+            restore_all
+            exit $?
             ;;
         -b|--btop)
             restore_btop
-            exit 0
+            exit $?
             ;;
         -o|--omz)
             restore_ohmyzsh
-            exit 0
+            exit $?
             ;;
         -s|--starship)
             restore_starship
-            exit 0
+            exit $?
             ;;
         -r|--rxfetch)
             restore_rxfetch
-            exit 0
+            exit $?
             ;;
         -c|--colorls)
             restore_colorls
-            exit 0
+            exit $?
             ;;
         -tm|--tmux)
             restore_tmux
-            exit 0
+            exit $?
+            ;;
+        -g|--ghostty)
+            restore_ghostty
+            exit $?
+            ;;
+        -co|--codium)
+            restore_codium
+            exit $?
             ;;
         -t|--test)
             check_status
-            exit 0
+            exit $?
             ;;
         -w|--wallpaper)
             restore_wallpaper

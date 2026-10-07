@@ -1,0 +1,123 @@
+{
+  "workbench.colorTheme": "Codemos Modern (Dark)",
+  "workbench.iconTheme": "charmed-icons",
+  "editor.fontFamily": "'CaskaydiaCove Nerd Font','DepartureMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.indentation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.scrollbar.vertical": "hidden",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmPasteNative": false,
+  "color-highlight.markRuler": false,
+  "window.autoDetectColorScheme": true,
+  "remote.autoForwardPortsSource": "hybrid",
+  "sqltools.results.reuseTabs": "connection",
+  "git.confirmSync": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "biome.suggestInstallingGlobally": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "prettier.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[sql]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "mtxr.sqltools"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "codeium.enableConfig": {
+    "*": true,
+    "md": true,
+    "markdown": true,
+    "ignore": true,
+    "properties": true,
+    "plaintext": true,
+    "xml": true,
+    "dotenv": true
+  },
+  "codemosModern.dark.auxiliaryUiTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/Dalton Menezes/Aura Theme/Aura Dark",
+  "codemosModern.dark.auxiliaryCodeTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/BeardedBear/Bearded Theme/Bearded Theme Vivid Black",
+  "codemosModern.light.auxiliaryUiTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/Miguel Solorio/Min Theme/Min Light",
+  "codemosModern.light.auxiliaryCodeTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/BeardedBear/Bearded Theme/Bearded Theme Vivid Light",
+  "workbench.preferredDarkColorTheme": "Codemos Modern (Dark)",
+  "workbench.preferredLightColorTheme": "Codemos Modern (Dark)",
+  "workbench.preferredHighContrastColorTheme": "Codemos Modern (Dark)",
+  "workbench.preferredHighContrastLightColorTheme": "Codemos Modern (Dark)",
+  "workbench.productIconTheme": "Tabler",
+  "workbench.tree.indent": 10,
+  "workbench.colorCustomizations": {
+    "tab.activeBorderTop": "#D2D2D2",
+    "tab.inactiveForeground": "#595959"
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "activitusbar.activeColour": "#FFFFFF",
+  "activitusbar.inactiveColour": "#828282",
+  "activitusbar.views": [
+    { "name": "explorer", "codicon": "explorer-view-icon" },
+    { "name": "search", "codicon": "search-view-icon" },
+    { "name": "scm", "codicon": "source-control-view-icon" },
+    { "name": "extensions", "codicon": "extensions-view-icon" },
+    { "name": "command.workbench.view.remote", "codicon": "extensions-remote", "tooltip": "Remote" },
+    { "name": "command.workbench.view.extension.devtool-plus", "codicon": "edit-code", "tooltip": "Devtools+" },
+    { "name": "command.workbench.view.extension.sqltoolsActivityBarContainer", "codicon": "database", "tooltip": "SQL Tools" }
+  ],
+  "files.exclude": {
+    "**/.trunk/*actions/": true,
+    "**/.trunk/*logs/": true,
+    "**/.trunk/*notifications/": true,
+    "**/.trunk/*out/": true,
+    "**/.trunk/*plugins/": true
+  },
+  "files.watcherExclude": {
+    "**/.trunk/*actions/": true,
+    "**/.trunk/*logs/": true,
+    "**/.trunk/*notifications/": true,
+    "**/.trunk/*out/": true,
+    "**/.trunk/*plugins/": true
+  },
+  "material-icon-theme.folders.theme": "specific",
+  "opencodecommit.backendOrder": ["opencode"]
+}
