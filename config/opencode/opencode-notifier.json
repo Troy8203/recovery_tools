@@ -1,0 +1,28 @@
+{
+  "notificationSystem": "ghostty",
+  "sound": true,
+  "notification": true,
+  "suppressWhenFocused": true,
+  "showSessionTitle": true,
+  "minDuration": 3,
+  "command": {
+    "enabled": false,
+    "path": "bash",
+    "args": [
+      "-c",
+      "pw-play /usr/share/sounds/freedesktop/stereo/message-new-instant.oga"
+    ]
+  },
+  "events": {
+    "complete": { "notification": true, "command": false, "sound": true, "bell": false },
+    "permission": { "notification": true, "command": false, "sound": true, "bell": false },
+    "subagent_complete": false,
+    "error": { "notification": true, "command": false, "sound": true, "bell": false },
+    "question": { "notification": true, "command": false, "sound": true, "bell": false },
+    "user_cancelled": false,
+    "plan_exit": false,
+    "session_started": false,
+    "user_message": false,
+    "client_connected": false
+  }
+}

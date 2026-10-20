@@ -107,6 +107,125 @@ create_ghostty() {
     copy_config "$REPO_ROOT/config/ghostty/config.ghostty" "$CONFIG_HOME/ghostty/config.ghostty"
 }
 
+ensure_opencode_completion() {
+    local completion_dir="$HOME/.zsh/completions"
+    local completion_file="$completion_dir/_opencode"
+    local completion_tmp
+    local zshrc="${ZDOTDIR:-$HOME}/.zshrc"
+    local zshrc_tmp
+
+    mkdir -p "$completion_dir" "$(dirname "$zshrc")"
+    completion_tmp="$(mktemp)"
+    if ! opencode --completions zsh > "$completion_tmp" || [ ! -s "$completion_tmp" ]; then
+        rm -f "$completion_tmp"
+        echo "✖ Could not generate OpenCode Zsh completions"
+        return 1
+    fi
+    copy_config "$completion_tmp" "$completion_file" || {
+        rm -f "$completion_tmp"
+        return 1
+    }
+    rm -f "$completion_tmp"
+
+    touch "$zshrc"
+    if grep -Fq '.zsh/completions' "$zshrc"; then
+        return 0
+    fi
+
+    if [ -s "$zshrc" ]; then
+        backup_existing "$zshrc" || return 1
+    fi
+    zshrc_tmp="$(mktemp)"
+    awk '
+        !added && /source .*oh-my-zsh\.sh/ {
+            print "# OpenCode completions (before Oh My Zsh initializes compinit)."
+            print "fpath=(\"$HOME/.zsh/completions\" $fpath)"
+            added=1
+        }
+        { print }
+        END {
+            if (!added) {
+                print ""
+                print "# OpenCode completions"
+                print "fpath=(\"$HOME/.zsh/completions\" $fpath)"
+                print "autoload -Uz compinit"
+                print "compinit"
+            }
+        }
+    ' "$zshrc" > "$zshrc_tmp" || {
+        rm -f "$zshrc_tmp"
+        return 1
+    }
+    cp "$zshrc_tmp" "$zshrc" || {
+        rm -f "$zshrc_tmp"
+        return 1
+    }
+    rm -f "$zshrc_tmp"
+    echo "✔ Enabled OpenCode Zsh completions in $zshrc"
+}
+
+create_opencode() {
+    local target_dir="$CONFIG_HOME/opencode"
+    local opencode_config="$target_dir/opencode.jsonc"
+    local cli_config="$target_dir/cli.json"
+    local cli_tmp
+    local notifier_package='@mohak34/opencode-notifier@latest'
+
+    mkdir -p "$target_dir"
+
+    if [ ! -f "$opencode_config" ] || ! grep -Fq '@mohak34/opencode-notifier' "$opencode_config"; then
+        backup_existing "$opencode_config" || return 1
+        opencode plugin add "$notifier_package" || return 1
+        echo "✔ Added OpenCode notifier without replacing existing providers or models"
+    else
+        echo "✔ OpenCode notifier is already configured"
+    fi
+
+    if [ ! -e "$cli_config" ]; then
+        copy_config "$REPO_ROOT/config/opencode/cli-notifications.json" "$cli_config" || return 1
+    else
+        if ! command -v jq >/dev/null 2>&1; then
+            echo "✖ jq is required to preserve and merge the existing OpenCode CLI settings"
+            return 1
+        fi
+        if ! jq empty "$cli_config" >/dev/null 2>&1; then
+            echo "✖ Existing OpenCode CLI settings are not valid JSON: $cli_config"
+            return 1
+        fi
+        if ! jq -e '
+            (.plugins // []) as $plugins |
+            ($plugins | index("*")) != null and
+            ($plugins | index("-opencode.notifications")) != null
+        ' "$cli_config" >/dev/null; then
+            backup_existing "$cli_config" || return 1
+            cli_tmp="$(mktemp)"
+            jq '
+                .plugins = (
+                    ["*"] +
+                    ((.plugins // []) | map(select(. != "*" and . != "-opencode.notifications"))) +
+                    ["-opencode.notifications"]
+                )
+            ' "$cli_config" > "$cli_tmp" || {
+                rm -f "$cli_tmp"
+                return 1
+            }
+            cp "$cli_tmp" "$cli_config" || {
+                rm -f "$cli_tmp"
+                return 1
+            }
+            rm -f "$cli_tmp"
+            echo "✔ Merged notification settings into $cli_config"
+        else
+            echo "✔ OpenCode CLI notification settings are already configured"
+        fi
+    fi
+
+    copy_config "$REPO_ROOT/config/opencode/opencode-notifier.json" "$target_dir/opencode-notifier.json" || return 1
+    ensure_opencode_completion || return 1
+
+    echo "✔ OpenCode notifier is installed and configured"
+}
+
 create_codium() {
     local user_dir="$CONFIG_HOME/VSCodium/User"
     local extension
@@ -179,6 +298,11 @@ restore_tmux() {
 restore_ghostty() {
     check_ghostty || return 1
     create_ghostty
+}
+
+restore_opencode() {
+    check_opencode || return 1
+    create_opencode
 }
 
 restore_codium() {

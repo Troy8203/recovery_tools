@@ -9,6 +9,7 @@
 ![tmux](https://img.shields.io/badge/tmux-232323?style=for-the-badge&logo=tmux&logoColor=1BB91F)
 ![ghostty](https://img.shields.io/badge/Ghostty-232323?style=for-the-badge&logo=ghostty&logoColor=FFFFFF)
 ![vscodium](https://img.shields.io/badge/VSCodium-232323?style=for-the-badge&logo=vscodium&logoColor=2F80ED)
+![opencode](https://img.shields.io/badge/OpenCode-232323?style=for-the-badge&logo=opencode&logoColor=FFFFFF)
 
 This script restores configuration files and settings for popular CLI tools on your system.
 
@@ -26,6 +27,8 @@ Make sure you have the following tools installed before running the script:
 - [Tmux 3.3+](https://github.com/tmux/tmux/wiki/Installing)
 - [Ghostty](https://ghostty.org/)
 - [VSCodium](https://vscodium.com/)
+- [OpenCode](https://opencode.ai/)
+- [jq](https://jqlang.org/) (used to merge OpenCode CLI settings safely)
 
 > Other cli tools: `bat` `speedtest-cli` `trash` `mdv`
 
@@ -52,6 +55,7 @@ cd recovery_tools
 | `-c`, `--colorls`    | Restore Colorls configuration                         |
 | `-tm`, `--tmux`      | Restore Tmux configuration                            |
 | `-g`, `--ghostty`    | Restore Ghostty configuration                         |
+| `-oc`, `--opencode`  | Restore OpenCode, notifier and Zsh completions        |
 | `-co`, `--codium`    | Restore VSCodium settings, shortcuts and extensions   |
 | `-b`, `--btop`       | Restore btop configuration                            |
 | `-w`, `--wallpaper`  | Restore wallpaper                                     |
@@ -68,10 +72,17 @@ cd recovery_tools
 - System status checking for supported tools
 - Backups of existing files before replacement
 
-Starship, Ghostty, VSCodium and btop honor `XDG_CONFIG_HOME` when it is set.
+Starship, Ghostty, OpenCode, VSCodium and btop honor `XDG_CONFIG_HOME` when it is set.
 Zsh honors `ZDOTDIR`. VSCodium restores portable settings, keybindings,
 snippets and extensions only; credentials, database connections, history,
 caches and local workspace state are excluded.
+
+OpenCode restoration adds the external `@mohak34/opencode-notifier` plugin to
+the existing global configuration without replacing providers, models or other
+plugins. It merges only the CLI directives needed to avoid duplicate native
+notifications, restores the Ghostty notifier settings, and generates Zsh
+completions using the installed OpenCode version. Accounts, credentials,
+sessions, logs, caches and notifier state are never copied.
 
 
 ## Others

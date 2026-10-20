@@ -36,6 +36,7 @@ check_rxfetch() { check_command rxfetch; }
 check_colorls() { check_command colorls; }
 check_tmux() { check_command tmux; }
 check_ghostty() { check_command ghostty; }
+check_opencode() { check_command opencode OpenCode; }
 check_codium() { check_command codium VSCodium; }
 check_others() { check_command bat; }
 check_btop() { check_command btop; }

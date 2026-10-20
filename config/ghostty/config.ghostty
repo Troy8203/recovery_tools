@@ -7,3 +7,5 @@ window-decoration = false
 macos-titlebar-style = hidden
 window-padding-color = background
 shell-integration = detect
+# OpenCode notifier uses Ghostty's native notification protocol; no generated
+# notifier state is stored in this file.

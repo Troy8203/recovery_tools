@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_version="0.2.0"
+current_version="0.3.0"
 
 #Import utils
 source "$(dirname "$0")/./lib/utils.sh"
@@ -18,6 +18,7 @@ check_status() {
     check_others || status=1
     check_tmux || status=1
     check_ghostty || status=1
+    check_opencode || status=1
     check_codium || status=1
     check_btop || status=1
     return "$status"
@@ -30,6 +31,7 @@ restore_all() {
     restore_starship || status=1
     restore_tmux || status=1
     restore_ghostty || status=1
+    restore_opencode || status=1
     restore_codium || status=1
     restore_rxfetch || status=1
     restore_colorls || status=1
@@ -48,6 +50,7 @@ help() {
 \t[-c | --colorls]\tRestore colorls
 \t[-tm | --tmux]\t\tRestore tmux
 \t[-g | --ghostty]\tRestore Ghostty
+\t[-oc | --opencode]\tRestore OpenCode and Zsh completions
 \t[-co | --codium]\tRestore VSCodium
 \t[-b | --btop]\t\tRestore btop
 \t[-w | --wallpaper]\tRestore wallpaper
@@ -108,6 +111,10 @@ if [ "$#" -ge 1 ]; then
             ;;
         -g|--ghostty)
             restore_ghostty
+            exit $?
+            ;;
+        -oc|--opencode)
+            restore_opencode
             exit $?
             ;;
         -co|--codium)
