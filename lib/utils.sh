@@ -33,7 +33,7 @@ check_nerdfonts() {
 
 check_starship() { check_command starship; }
 check_rxfetch() { check_command rxfetch; }
-check_colorls() { check_command colorls; }
+check_lsd() { check_command lsd; }
 check_tmux() { check_command tmux; }
 check_ghostty() { check_command ghostty; }
 check_opencode() { check_command opencode OpenCode; }

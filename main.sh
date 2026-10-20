@@ -14,7 +14,7 @@ check_status() {
     check_nerdfonts || status=1
     check_starship || status=1
     check_rxfetch || status=1
-    check_colorls || status=1
+    check_lsd || status=1
     check_others || status=1
     check_tmux || status=1
     check_ghostty || status=1
@@ -34,7 +34,7 @@ restore_all() {
     restore_opencode || status=1
     restore_codium || status=1
     restore_rxfetch || status=1
-    restore_colorls || status=1
+    restore_lsd || status=1
     restore_btop || status=1
     return "$status"
 }
@@ -47,7 +47,7 @@ help() {
 \t[-o | --omz]\t\tRestore oh-my-zsh config (alias, functions)
 \t[-s | --starship]\tRestore starship
 \t[-r | --rxfetch]\tRestore rxfetch
-\t[-c | --colorls]\tRestore colorls
+\t[-l | --lsd]\t\tRestore lsd icons
 \t[-tm | --tmux]\t\tRestore tmux
 \t[-g | --ghostty]\tRestore Ghostty
 \t[-oc | --opencode]\tRestore OpenCode and Zsh completions
@@ -101,8 +101,8 @@ if [ "$#" -ge 1 ]; then
             restore_rxfetch
             exit $?
             ;;
-        -c|--colorls)
-            restore_colorls
+        -l|--lsd)
+            restore_lsd
             exit $?
             ;;
         -tm|--tmux)

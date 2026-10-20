@@ -86,11 +86,8 @@ create_rxfetch() {
     chmod +x "$target"
 }
 
-create_colorls() {
-    backup_existing "$CONFIG_HOME/colorls" || return 1
-    mkdir -p "$CONFIG_HOME/colorls"
-    cp -r "$REPO_ROOT/config/colorls/." "$CONFIG_HOME/colorls/" || return 1
-    echo "✔ Restored: $CONFIG_HOME/colorls"
+create_lsd() {
+    copy_config "$REPO_ROOT/config/lsd/icons.yaml" "$CONFIG_HOME/lsd/icons.yaml"
 }
 
 create_tmux() {
@@ -285,9 +282,9 @@ restore_rxfetch() {
     create_rxfetch
 }
 
-restore_colorls() {
-    check_colorls || return 1
-    create_colorls
+restore_lsd() {
+    check_lsd || return 1
+    create_lsd
 }
 
 restore_tmux() {
