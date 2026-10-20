@@ -5,7 +5,6 @@ beardedbear.beardedtheme@10.1.0
 biomejs.biome@3.7.1
 bradlc.vscode-tailwindcss@0.16.0
 castrogusttavo.min-theme@1.0.0
-codeium.codeium@1.48.2
 codemos.codemos-modern@3.0.9
 dsznajder.es7-react-js-snippets@4.4.3
 formulahendry.auto-rename-tag@0.1.10
@@ -24,9 +23,10 @@ pkief.material-icon-theme@5.39.0
 pkief.material-product-icons@1.7.1
 prettier.prettier-vscode@12.2.0
 qwtel.sqlite-viewer@26.9.1
-sst-dev.opencode@0.0.13
-streetsidesoftware.code-spell-checker@4.9.3
-streetsidesoftware.code-spell-checker-spanish@2.3.9
+sst-dev.opencode@1.0.0
+streetsidesoftware.code-spell-checker@4.10.0
+streetsidesoftware.code-spell-checker-spanish@2.3.10
+supermaven.supermaven@1.1.5
 trunk.io@3.21.0
 unifiedjs.vscode-mdx@1.8.18
 usernamehw.errorlens@3.29.0

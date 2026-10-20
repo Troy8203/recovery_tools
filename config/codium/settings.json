@@ -46,30 +46,17 @@
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "codeium.enableConfig": {
-    "*": true,
-    "md": true,
-    "markdown": true,
-    "ignore": true,
-    "properties": true,
-    "plaintext": true,
-    "xml": true,
-    "dotenv": true
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "codemosModern.dark.auxiliaryUiTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/Dalton Menezes/Aura Theme/Aura Dark",
   "codemosModern.dark.auxiliaryCodeTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/BeardedBear/Bearded Theme/Bearded Theme Vivid Black",
   "codemosModern.light.auxiliaryUiTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/Miguel Solorio/Min Theme/Min Light",
   "codemosModern.light.auxiliaryCodeTheme": "EmrecanKaracayir/Auxiliary-Theme-Registry/BeardedBear/Bearded Theme/Bearded Theme Vivid Light",
   "workbench.preferredDarkColorTheme": "Codemos Modern (Dark)",
-  "workbench.preferredLightColorTheme": "Codemos Modern (Dark)",
+  "workbench.preferredLightColorTheme": "Codemos Modern (Light)",
   "workbench.preferredHighContrastColorTheme": "Codemos Modern (Dark)",
-  "workbench.preferredHighContrastLightColorTheme": "Codemos Modern (Dark)",
+  "workbench.preferredHighContrastLightColorTheme": "Default Light+",
   "workbench.productIconTheme": "Tabler",
   "workbench.tree.indent": 10,
   "workbench.colorCustomizations": {
