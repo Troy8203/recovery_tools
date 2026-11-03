@@ -49,8 +49,11 @@ tmx() {
 
   tmux rename-window " $win_name"
   tmux split-window -h
-  tmux send-keys -l -- "$*"
-  tmux send-keys Enter
+  if (( $# > 0 )); then
+    tmux send-keys -l -- "$*"
+    tmux send-keys Enter
+  fi
   tmux select-pane -t 0
   tmux split-window -v
+  tmux send-keys -t 0 C-l
 }
